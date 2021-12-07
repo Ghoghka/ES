@@ -1,7 +1,6 @@
 <?php
     session_start();
-    include("C:/AppParams/params.php");
-    
+    include("C:/AppParams/params.php");   
 ?>
 <html>
     <head>
