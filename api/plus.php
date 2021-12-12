@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-include("C:/AppParams/params.php");
+include(getenv('MYAPP_CONFIG'));  
 //Это комментарий PHP
 
 $x = $_REQUEST["x"];

@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    include(getenv('MYAPP_CONFIG')); 
     if(isset($_REQUEST["user"],$_REQUEST["pwd"])){
         $user = $_REQUEST["user"];    
         $pwd = $_REQUEST["pwd"];
@@ -10,7 +11,10 @@
         $sql_insert = "INSERT 
                     INTO users
                     SET UserName='$user', PwdHash='$hashed'";
-        $conn = mysqli_connect("localhost:3306","root","","calc");
+        
+        //$conn = mysqli_connect("localhost:3306","root","","calc");
+        $conn = mysqli_connect($DB_URL,$DB_USER,$DB_PWD,$DB_NAME);
+        
         $cursor = mysqli_query($conn,$sql_select);
         $result = mysqli_fetch_all($cursor);
         echo(mysqli_error($conn));
