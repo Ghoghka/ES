@@ -7,17 +7,27 @@
         $hashed = hash('sha256',$pwd);
         $sql_select = "SELECT ID, UserName
                     FROM users
-                    WHERE UserName='$user'";
+                    WHERE UserName=?";
         $sql_insert = "INSERT 
                     INTO users
-                    SET UserName='$user', PwdHash='$hashed'";
+                    SET UserName=?, PwdHash=?";
         
         //$conn = mysqli_connect("localhost:3306","root","","calc");
         $conn = mysqli_connect($DB_URL,$DB_USER,$DB_PWD,$DB_NAME);
+
+        //$cursor = mysqli_query($conn,$sql_select);
+        //$result = mysqli_fetch_all($cursor);
+
+        $statement = mysqli_prepare($conn,$sql_select);
+        mysqli_stmt_bind_param($statement,"s",$user);
+        mysqli_stmt_execute($statement);
         
-        $cursor = mysqli_query($conn,$sql_select);
-        $result = mysqli_fetch_all($cursor);
         echo(mysqli_error($conn));
+
+        $cursor = mysqli_stmt_get_result($statement);
+        $result = mysqli_fetch_all($cursor);
+
+        //echo(mysqli_error($conn));
         //var_dump($result);
         
         if(count($result) > 0) {
@@ -26,7 +36,17 @@
             //echo('<meta http-equiv="refresh" content="2; URL = register.php">');
             }
         else {
-            $cursor = mysqli_query($conn,$sql_insert);
+            //$cursor = mysqli_query($conn,$sql_insert);
+
+            $statement = mysqli_prepare($conn,$sql_insert);
+            mysqli_stmt_bind_param($statement,"ss",$user,$hashed);
+            mysqli_stmt_execute($statement);
+            
+            echo(mysqli_error($conn));
+
+            $cursor = mysqli_stmt_get_result($statement);
+            //$result = mysqli_fetch_all($cursor);
+
             //$error_msg = mysqli_error($conn);
             //echo($error_msg);
             //mysqli_close($conn);
@@ -35,9 +55,9 @@
             //Вы успешно зарегистрированы и вошли в систему.<br />
             //Сейчас Вы будете перенаправлены на главную страницу.</h2>");
             //echo('<meta http-equiv="refresh" content="5; URL = index_.html">');
-            if ($cursor != 'TRUE'){
-                 mysqli_close($conn);
+            if ($cursor == 'FALSE'){
                  echo(mysqli_error($conn));
+                 mysqli_close($conn);
             }
             else {
                 mysqli_close($conn);
