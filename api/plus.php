@@ -13,7 +13,7 @@ $user = $_SESSION["user"];
 //$conn = mysqli_connect("localhost:3306","root","","calc");
 $conn = mysqli_connect($DB_URL,$DB_USER,$DB_PWD,$DB_NAME);
 
-$sql = "INSERT INTO log(Number1, Number2, Result, UserID) VALUES($x,$y,$z,'$user')";
+$sql = "INSERT INTO log(Number1, Number2, Result, UserID, Timestamp) VALUES($x,$y,$z,'$user',now())";
 //$sql = "INSERT INTO log(Number1, Number2, Result, UserID) VALUES($x,$y,$z,'anonym')";
 
 mysqli_query($conn,$sql);
