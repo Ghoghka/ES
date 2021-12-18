@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include(getenv('MYAPP_CONFIG')); 
+    include ('/var/www/html/params.php')
     if(isset($_REQUEST["user"],$_REQUEST["pwd"])){
         $user = $_REQUEST["user"];    
         $pwd = $_REQUEST["pwd"];

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include(getenv('MYAPP_CONFIG'));  
+include ('/var/www/html/params.php') 
 $x = $_REQUEST["x"];
 $y = $_REQUEST["y"];
 $z = $x - $y;
