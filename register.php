@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include ('/var/www/html/params.php')
+    include ('/var/www/html/params.php');
     if(isset($_REQUEST["user"],$_REQUEST["pwd"])){
         $user = $_REQUEST["user"];    
         $pwd = $_REQUEST["pwd"];

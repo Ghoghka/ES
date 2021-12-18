@@ -7,7 +7,7 @@
     }
     $user = $_SESSION["user"];
     //echo("1111".getenv('MYAPP_CONFIG'));
-    include ('/var/www/html/params.php')
+    include ('/var/www/html/params.php');
 
             //$user = $_REQUEST["user"];
             //echo($user);

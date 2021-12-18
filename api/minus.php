@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('/var/www/html/params.php') 
+include ('/var/www/html/params.php');
 $x = $_REQUEST["x"];
 $y = $_REQUEST["y"];
 $z = $x - $y;

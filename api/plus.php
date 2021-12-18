@@ -1,7 +1,7 @@
 <?php
 
 session_start(); 
-include ('/var/www/html/params.php') 
+include ('/var/www/html/params.php'); 
 //Это комментарий PHP
 
 $x = $_REQUEST["x"];
